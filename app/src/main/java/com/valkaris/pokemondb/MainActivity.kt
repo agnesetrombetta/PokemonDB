@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
@@ -48,13 +49,15 @@ class MainActivity : ComponentActivity() {
                                         .padding(8.dp),
                                     text = "Pokémon DB",
                                     textAlign = TextAlign.Center,
-                                    style = PokemonDBTextStyles.titleVeryHuge
+                                    color= MaterialTheme.colorScheme.primary,
+                                    style = PokemonDBTextStyles.titleExtraHuge
                                 )
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
-                                    text = "Gotta data 'em all!", // sottotitolo modificabile
+                                    text = "Gotta data 'em all!",
                                     textAlign = TextAlign.Center,
-                                    style = PokemonDBTextStyles.bodyLarge
+                                    color= MaterialTheme.colorScheme.primary,
+                                    style = PokemonDBTextStyles.titleHuge
                                 )
                             }
                         }

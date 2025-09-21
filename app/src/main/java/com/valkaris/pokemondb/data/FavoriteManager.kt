@@ -8,17 +8,17 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-// Estensione per accedere al DataStore
+// Extension to access the DataStore
 private val Context.dataStore by preferencesDataStore(name = "favorites")
 
 class FavoriteManager(private val context: Context) {
     private val FAVORITES_KEY = stringSetPreferencesKey("favorite_pokemon")
 
-    // Flusso dei preferiti salvati
+    // Saved Favorites Stream
     val favorites: Flow<Set<String>> = context.dataStore.data
         .map { preferences -> preferences[FAVORITES_KEY] ?: emptySet() }
 
-    // Aggiunge o rimuove il Pokémon dai preferiti
+    // Adds or removes the Pokémon from your favorites
     suspend fun toggleFavorite(pokemonName: String) {
         context.dataStore.edit { preferences ->
             val current = preferences[FAVORITES_KEY] ?: emptySet()

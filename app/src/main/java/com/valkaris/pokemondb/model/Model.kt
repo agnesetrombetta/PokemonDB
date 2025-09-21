@@ -1,6 +1,6 @@
 package com.valkaris.pokemondb.model
 
-// SmallPokemon: rappresenta un Pokémon nella lista
+// SmallPokemon: Represents a Pokémon in the list
 data class SmallPokemon(
     val id: Int,
     val name: String,
@@ -11,26 +11,23 @@ fun SmallPokemon.imageUrl(): String {
     val id = url.trimEnd('/').split("/").last()
     return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 }
-// SmallPokemonResponse: risposta della lista Pokémon
-data class SmallPokemonResponse(
-    val pokemons: List<SmallPokemon>
-)
-// SmallPokemonListResponse: risposta della lista Pokémon con risultati
+
+// SmallPokemonListResponse: Pokémon list response with results
 data class SmallPokemonListResponse(
     val results: List<SmallPokemon>
 )
 
-// Sprites: immagini del Pokémon
+// Sprites: Images of the Pokémon
 data class Sprites(
     val front_default: String
 )
 
-// Ability: nome dell'abilità
+// Ability: name of the ability
 data class Ability(
     val name: String
 )
 
-// AbilityEntry: struttura per la lista delle abilità
+// AbilityEntry: Structure for the list of abilities
 data class AbilityEntry(
     val ability: Ability
 )
@@ -48,7 +45,7 @@ data class FlavorTextLanguage(
     val name: String
 )
 
-// LargePokemon: dettagli completi del Pokémon
+// LargePokemon: Complete Pokémon Details
 data class LargePokemon(
     val id: Int,
     val name: String,
@@ -56,10 +53,16 @@ data class LargePokemon(
     val weight: Int,
     val sprites: Sprites,
     val abilities: List<AbilityEntry>,
-    val flavor_text_entries: List<FlavorTextEntry>? = null
+    val flavor_text_entries: List<FlavorTextEntry>? = null,
+    val types: List<PokemonTypeEntry>
 )
 
+data class PokemonTypeEntry(
+    val slot: Int,
+    val type: TypeInfo
+)
 
-data class LargePokemonResponse(
-    val drinks: List<LargePokemon>
+data class TypeInfo(
+    val name: String,
+    val url: String
 )

@@ -10,7 +10,7 @@ class PokemonRepository (private val context: Context) {
     private val baseUrl = "https://pokeapi.co/api/v2/"
     private val urlById = "${baseUrl}pokemon/"
 
-    // Lista paginata di Pokémon
+    // Pokémon Page List
     fun fetchPokemonsPage(limit: Int = 20, offset: Int = 0, onResult: (List<SmallPokemon>?) -> Unit) {
         val queue = Volley.newRequestQueue(context)
         val url = "${baseUrl}pokemon?limit=$limit&offset=$offset"
@@ -30,7 +30,7 @@ class PokemonRepository (private val context: Context) {
         queue.add(request)
     }
 
-    // Dettagli di un singolo Pokémon
+    // Details of a single Pokémon
     fun fetchPokemon(nameOrId: String, onResult: (LargePokemon?) -> Unit) {
         val queue = Volley.newRequestQueue(context)
         val url = "$urlById$nameOrId"

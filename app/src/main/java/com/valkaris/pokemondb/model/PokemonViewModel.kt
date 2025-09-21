@@ -75,53 +75,32 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
     }
 
     init {
-        // Carichiamo i primi 20 Pokémon appena avviata l’app
         loadInitialPokemons()
     }
 
-    // Carica i primi 20 Pokémon
+    // Load Pokémons
     fun loadInitialPokemons() {
         repo.fetchPokemonsPage(limit = 1302, offset = 0) { list ->
             _pokemons.postValue(list ?: emptyList())
         }
     }
 
-    // Carica altri Pokémon con paginazione
-    fun loadMorePokemons(offset: Int) {
-        repo.fetchPokemonsPage(limit = 20, offset = offset) { list ->
-            val current = _pokemons.value ?: emptyList()
-            _pokemons.postValue(current + (list ?: emptyList()))
-        }
-    }
 
-    // Imposta se mostrare solo i preferiti
+    // Set whether to show only favorites
     fun setShowOnlyFavorites(shouldShow: Boolean) {
         _showOnlyFavorites.value = shouldShow
     }
 
-    // Cerca Pokémon per nome (es. "pikachu")
-    fun searchPokemonByName(name: String) {
-        val cleanedName = name.trim().lowercase()
-        if (cleanedName.isBlank()) return
 
-        repo.fetchPokemon(cleanedName) { pokemon ->
-            if (pokemon != null) {
-                val currentMap = _detailsMap.value ?: emptyMap()
-                _detailsMap.postValue(currentMap + (cleanedName to pokemon))
-                _expandedPokemonId.value = cleanedName
-            }
-        }
-    }
-
-    // Mostra i dettagli di un Pokémon (nome o id)
+    // Show details of a Pokémon (name or id)
     fun loadDetails(name: String) {
         repo.fetchPokemon(name) { pokemon ->
             if (pokemon != null) {
-                // Qui dentro aggiungi la chiamata al species per il flavor text
+                // Add the species call for the flavor text here.
                 repo.fetchPokemonSpecies(name) { species ->
                     val flavorText = species?.flavor_text_entries
                         ?.find { it.language.name == "en" }
-                        ?.flavor_text ?: "Flavor text non disponibile"
+                        ?.flavor_text ?: "Description not available"
 
                     val fullPokemon = pokemon.copy(
                         flavor_text_entries = listOf(
@@ -139,15 +118,9 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-
-    // Rimuove i dettagli (quando chiudi la scheda di un Pokémon)
-    fun removeDetails(name: String) {
-        val currentMap = _detailsMap.value ?: return
-        _detailsMap.value = currentMap - name
-    }
-
 }
-// Factory per creare il ViewModel
+
+// Factory to create the ViewModel
 class PokemonViewModelFactory(private val application: Application) :
     ViewModelProvider.AndroidViewModelFactory(application) {
 
