@@ -34,7 +34,7 @@ PokemonDB è un'applicazione Android sviluppata in **Kotlin** con **Jetpack Comp
    git clone https://github.com/agnesetrombetta/PokemonDB.git
 
 2. *Apri il progetto in Android Studio*
-3. *Compila ed esegui* su un emulatore o dispositivo Android.
+3. *Compila ed esegui* su un emulatore o dispositivo Android
 
 > *Requisiti*
 > - Android Studio
