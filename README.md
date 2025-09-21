@@ -1,6 +1,6 @@
 # PokemonDB
 
-PokemonDB è un'applicazione Android sviluppata in **Kotlin** con **Jetpack Compose** che permette di esplorare i Pokémon, consultarne dettagli e abilità, e gestire una lista di preferiti, con un’interfaccia moderna e ottimizzata
+PokemonDB è un'applicazione Android sviluppata in **Kotlin** con **Jetpack Compose** che permette di esplorare i Pokémon, consultarne dettagli e abilità, e gestire una lista di preferiti, con un’interfaccia moderna e ottimizzata.
 
 ## Funzionalità principali
 
